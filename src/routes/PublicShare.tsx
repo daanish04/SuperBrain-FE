@@ -41,7 +41,7 @@ export default function PublicShare() {
             </h1>
           </div>
           <div className="flex gap-9 items-center">
-            <h3 className="text-lg font-medium ">{`You're exploring, ${user}'s Brain`}</h3>
+            <h3 className="text-lg font-medium ">{`You're exploring ${user}'s Brain`}</h3>
           </div>
         </div>
         <br />
