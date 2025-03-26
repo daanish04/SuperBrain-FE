@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pink: #ee35ac;
+  --color-darkgrey: #223444;
+  --color-teapink: #fff4eb;
+  --color-deepblue: #1b3f65;
+  --color-footblue: #263343;
+}
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
