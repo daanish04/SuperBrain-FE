@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Close } from "../icons/Close";
 import { Button } from "./Button";
 import axios from "axios";
+import { API_URL } from "../config";
 
 export default function ShareBrainModal({
   open,
@@ -10,7 +11,6 @@ export default function ShareBrainModal({
   open: boolean;
   onClose: () => void;
 }) {
-  const API_URL = useRef(import.meta.env.VITE_API_URL);
   const [shareLink, setShareLink] = useState<string | null>(null);
   const [shareLoading, setShareLoading] = useState(false);
   const [unshareLoading, setUnshareLoading] = useState(false);
@@ -19,7 +19,7 @@ export default function ShareBrainModal({
     setTimeout(async () => {
       try {
         const link = await axios.post(
-          `${API_URL.current}/brain/share`,
+          `${API_URL}/brain/share`,
           {
             share: share,
           },

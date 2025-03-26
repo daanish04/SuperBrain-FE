@@ -3,9 +3,9 @@ import { Button } from "../components/Button";
 import { Print } from "../icons/Print";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 export default function Signup() {
-  const API_URL = useRef(import.meta.env.VITE_API_URL);
   const navigate = useNavigate();
   const nameRef = useRef<HTMLInputElement>(null);
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -26,7 +26,7 @@ export default function Signup() {
     }
     setLoading(true);
     try {
-      const response = await axios.post(`${API_URL.current}/signup`, {
+      const response = await axios.post(`${API_URL}/signup`, {
         name,
         username,
         password,

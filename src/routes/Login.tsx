@@ -3,9 +3,9 @@ import { Button } from "../components/Button";
 import { Print } from "../icons/Print";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
+import { API_URL } from "../config";
 
 export default function Login() {
-  const API_URL = useRef(import.meta.env.VITE_API_URL);
   const navigate = useNavigate();
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -22,7 +22,7 @@ export default function Login() {
     }
     setLoading(true);
     try {
-      const response = await axios.post(`${API_URL.current}/signin`, {
+      const response = await axios.post(`${API_URL}/signin`, {
         username,
         password,
       });

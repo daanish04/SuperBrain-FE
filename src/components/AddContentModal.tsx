@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Close } from "../icons/Close";
 import { Button } from "./Button";
 import axios from "axios";
+import { API_URL } from "../config";
 
 export default function AddContentModal({
   open,
@@ -12,7 +13,6 @@ export default function AddContentModal({
   onClose: () => void;
   fetch: () => void;
 }) {
-  const API_URL = useRef(import.meta.env.VITE_API_URL);
   const titleRef = useRef<HTMLInputElement>(null);
   const linkRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLInputElement>(null);
@@ -23,7 +23,7 @@ export default function AddContentModal({
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await axios.get(`${API_URL.current}/content/tags`);
+        const response = await axios.get(`${API_URL}/content/tags`);
         const tagsList = response.data.tags.map(
           (tag: { title: string }) => tag.title
         );
@@ -47,7 +47,7 @@ export default function AddContentModal({
 
     try {
       await axios.post(
-        `${API_URL.current}/content`,
+        `${API_URL}/content`,
         {
           title: title,
           link: link,

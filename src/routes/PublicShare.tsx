@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Card, { CardProps } from "../components/Card";
 import { Print } from "../icons/Print";
 import axios from "axios";
+import { API_URL } from "../config";
 
 export default function PublicShare() {
-  const API_URL = useRef(import.meta.env.VITE_API_URL);
   const [user, setUser] = useState<string | null>(null);
   const [content, setContent] = useState<CardProps[]>([]);
   const { shareLink } = useParams();
   console.log(`render`);
   const fetchContent = async (link: string) => {
     try {
-      const res = await axios.get(`${API_URL.current}/brain/${link}`, {});
+      const res = await axios.get(`${API_URL}/brain/${link}`, {});
       setContent(res.data.content);
       if (res.data.content?.length > 0 && res.data.content[0]?.userId?.name)
         setUser(res.data.content[0].userId.name);

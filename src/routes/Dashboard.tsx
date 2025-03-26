@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import AddContentModal from "../components/AddContentModal";
 import { Button } from "../components/Button";
 import Card, { CardProps } from "../components/Card";
@@ -8,9 +8,9 @@ import { Share } from "../icons/Share";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ShareBrainModal from "../components/ShareBrainModal";
+import { API_URL } from "../config";
 
 export default function Dashboard() {
-  const API_URL = useRef(import.meta.env.VITE_API_URL);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [content, setContent] = useState<CardProps[]>([]);
@@ -19,7 +19,7 @@ export default function Dashboard() {
 
   const fetchContent = async () => {
     try {
-      const res = await axios.get(`${API_URL.current}/content`, {
+      const res = await axios.get(`${API_URL}/content`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
@@ -42,7 +42,7 @@ export default function Dashboard() {
   const handleDelete = async (id: string) => {
     if (!window.confirm("Do you really want to delete this content?")) return;
     try {
-      await axios.delete(`${API_URL.current}/content/`, {
+      await axios.delete(`${API_URL}/content/`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
