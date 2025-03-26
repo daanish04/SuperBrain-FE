@@ -9,7 +9,7 @@ export default function PublicShare() {
   const [user, setUser] = useState<string | null>(null);
   const [content, setContent] = useState<CardProps[]>([]);
   const { shareLink } = useParams();
-  console.log(`render`);
+  console.log(`share link ${shareLink}`);
   const fetchContent = async (link: string) => {
     try {
       const res = await axios.get(`${API_URL}/brain/${link}`, {});
@@ -20,6 +20,8 @@ export default function PublicShare() {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         alert(`Error: ${error.response?.data?.error}`);
+      } else {
+        alert(`Failed to load content`);
       }
     }
   };
