@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/brain/:path*", "destination": "/index.html" }]
+}
